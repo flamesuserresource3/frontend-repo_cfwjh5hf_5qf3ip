@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Compliment = ({ name = 'somaiya', delay = 2.4 }) => {
+const Compliment = ({ delay = 2.2 }) => {
   const lines = [
-    `${name} you feel like soft morning sun to me`,
-    'with you the world slows and my chest feels light',
-    'i want to hold your hand and stay right here',
+    'Somaiya, words cant describe how beautiful you are, i wanna hug you and never let go.',
+    'i want to kiss you till our lips are swollen, i want us to grow old together.',
+    'i want us to succeed. i love you so much kuchu puchu. mwahhhh',
   ];
 
   return (
@@ -16,7 +16,7 @@ const Compliment = ({ name = 'somaiya', delay = 2.4 }) => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: delay + i * 0.7, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="text-white/95 text-2xl md:text-4xl font-medium tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.35)]"
+          className="text-white/95 text-xl md:text-3xl font-medium tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.35)]"
           style={{ textTransform: 'none', textShadow: '0 0 12px rgba(255, 255, 255, 0.25)' }}
         >
           {text}

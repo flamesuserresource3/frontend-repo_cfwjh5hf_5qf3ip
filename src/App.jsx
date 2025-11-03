@@ -7,7 +7,7 @@ function App() {
     <div className="w-screen h-screen bg-black text-white font-inter">
       <div className="relative w-full h-full">
         <Garden />
-        <Compliment name="Somaiya" />
+        <Compliment />
       </div>
     </div>
   );

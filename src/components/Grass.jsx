@@ -3,22 +3,27 @@ import { motion } from 'framer-motion';
 
 const randomBetween = (min, max) => Math.random() * (max - min) + min;
 
-const Grass = ({ blades = 120 }) => {
-  const data = useMemo(() => (
-    Array.from({ length: blades }).map((_, i) => ({
-      id: i,
-      left: randomBetween(0, 100),
-      height: randomBetween(16, 42),
-      tilt: randomBetween(-12, 12),
-      delay: randomBetween(0, 2),
-      duration: randomBetween(2.5, 5),
-      hue: randomBetween(140, 165),
-    }))
-  ), [blades]);
+const Grass = ({ blades = 160 }) => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  const bladeCount = isMobile ? Math.floor(blades * 0.55) : blades; // reduce density on phones
+
+  const data = useMemo(
+    () =>
+      Array.from({ length: bladeCount }).map((_, i) => ({
+        id: i,
+        left: randomBetween(0, 100),
+        height: randomBetween(28, 68), // taller blades overall
+        tilt: randomBetween(-12, 12),
+        delay: randomBetween(0, 2),
+        duration: randomBetween(2.5, 5.2),
+        hue: randomBetween(140, 165),
+      })),
+    [bladeCount]
+  );
 
   return (
-    <div className="absolute inset-x-0 bottom-10 h-36 overflow-visible">
-      {data.map(b => (
+    <div className="absolute inset-x-0 bottom-8 md:bottom-10 h-44 md:h-48 overflow-visible">
+      {data.map((b) => (
         <motion.div
           key={b.id}
           initial={{ rotate: b.tilt * 0.6 }}
