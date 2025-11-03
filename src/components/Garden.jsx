@@ -4,6 +4,7 @@ import Ground from './Ground';
 import Fireflies from './Fireflies';
 import Grass from './Grass';
 import Background from './Background';
+import CuteCharacter from './CuteCharacter';
 
 const Garden = () => {
   const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
@@ -36,8 +37,11 @@ const Garden = () => {
   const grassBlades = isMobile ? 110 : 220; // denser on desktop
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-[58vh] md:h-[calc(100vh-60vh)] overflow-hidden">
       <Background />
+
+      {/* Cute character near center, slightly left on desktop */}
+      <CuteCharacter x={isMobile ? '50%' : '42%'} y={isMobile ? '52%' : '58%'} />
 
       {flowers.map((f, idx) => (
         <Flower key={idx} x={f.x} height={f.h} color={f.c} delay={f.d} tilt={f.t} />
