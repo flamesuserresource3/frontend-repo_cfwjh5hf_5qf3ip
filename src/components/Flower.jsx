@@ -1,22 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Flower = ({ x = 50, height = 200, color = '#F472B6', delay = 0 }) => {
-  const stemDuration = 1.6;
+const Flower = ({ x = 50, height = 200, color = '#F472B6', delay = 0, tilt = 0 }) => {
+  const stemDuration = 1.8;
   const bloomDelay = delay + stemDuration - 0.2;
 
   return (
-    <div
+    <motion.div
       className="absolute bottom-12"
       style={{ left: `${x}%`, transform: 'translateX(-50%)' }}
+      initial={{ rotate: 0 }}
+      animate={{ rotate: [tilt * 0.6, tilt * -0.2, tilt] }}
+      transition={{ duration: 6, delay, repeat: Infinity, ease: 'easeInOut' }}
     >
       {/* Stem */}
       <motion.div
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
         transition={{ duration: stemDuration, delay, ease: [0.22, 1, 0.36, 1] }}
-        className="origin-bottom"
-        style={{ height, width: 4, background: 'linear-gradient(to top, #065F46, #10B981)' }}
+        className="origin-bottom rounded"
+        style={{ height, width: 4, background: 'linear-gradient(to top, #064E3B, #10B981)' }}
       />
 
       {/* Leaves */}
@@ -25,11 +28,11 @@ const Flower = ({ x = 50, height = 200, color = '#F472B6', delay = 0 }) => {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ delay: bloomDelay, duration: 0.8 }}
         className="absolute"
-        style={{ bottom: height * 0.5, left: -6 }}
+        style={{ bottom: height * 0.48, left: -7 }}
       >
         <div
-          className="w-3 h-2 rounded-full"
-          style={{ background: '#10B981', transform: 'rotate(-20deg)' }}
+          className="w-3.5 h-2 rounded-full"
+          style={{ background: '#10B981', transform: 'rotate(-25deg)' }}
         />
       </motion.div>
       <motion.div
@@ -40,7 +43,7 @@ const Flower = ({ x = 50, height = 200, color = '#F472B6', delay = 0 }) => {
         style={{ bottom: height * 0.62, left: 6 }}
       >
         <div
-          className="w-3 h-2 rounded-full"
+          className="w-3.5 h-2 rounded-full"
           style={{ background: '#10B981', transform: 'rotate(20deg)' }}
         />
       </motion.div>
@@ -65,7 +68,7 @@ const Flower = ({ x = 50, height = 200, color = '#F472B6', delay = 0 }) => {
           <circle cx="6.5" cy="6.5" r="3" fill={color} opacity="0.8" />
         </svg>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
